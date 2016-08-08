@@ -1,6 +1,6 @@
 FROM php:5.6-apache
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y \
 	bzip2 \
 	libcurl4-openssl-dev \
 	libfreetype6-dev \
