@@ -39,7 +39,6 @@ RUN set -ex \
 	&& docker-php-ext-enable apcu memcached redis
 
 ENV OWNCLOUD_VERSION 9.0.4
-VOLUME /var/www/html/data
 
 RUN cd /root/ \
     && curl -fsSL -o owncloud.tar.bz2 \
@@ -51,7 +50,6 @@ RUN cd /root/ \
     && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys E3036906AD9F30807351FAC32D5D5E97F6978A26 \
     && gpg --batch --verify owncloud.tar.bz2.asc owncloud.tar.bz2 \
     && rm -r "$GNUPGHOME" owncloud.tar.bz2.asc \
-    && ls -rtla /var/www/html/ \
     && rmdir /var/www/html/ \
     && tar xf owncloud.tar.bz2 -C /var/www/ \
     && mv /var/www/owncloud /var/www/html \
@@ -61,6 +59,7 @@ RUN cd /root/ \
     && ln -s /var/www/html/data/config.php /var/www/html/config/ \
     && chown -R www-data /var/www/html
 
+VOLUME /var/www/html/data
 
 CMD ["apache2-foreground"]
 
