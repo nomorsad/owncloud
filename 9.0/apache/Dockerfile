@@ -51,6 +51,7 @@ RUN cd /root/ \
     && gpg --keyserver ha.pool.sks-keyservers.net --recv-keys E3036906AD9F30807351FAC32D5D5E97F6978A26 \
     && gpg --batch --verify owncloud.tar.bz2.asc owncloud.tar.bz2 \
     && rm -r "$GNUPGHOME" owncloud.tar.bz2.asc \
+    && ls -rtla /var/www/html/ \
     && rmdir /var/www/html/ \
     && tar xf owncloud.tar.bz2 -C /var/www/ \
     && mv /var/www/owncloud /var/www/html \
