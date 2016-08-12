@@ -58,6 +58,7 @@ RUN cd /root/ \
     && mkdir /srv/shares/ \
     && ln -s /var/www/html/data/config.php /var/www/html/config/ \
     && chown -R www-data /var/www/html
+    && usermod -s /bin/sh www-data
 
 VOLUME /var/www/html/data
 
